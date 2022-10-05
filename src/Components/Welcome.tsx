@@ -8,7 +8,7 @@ interface Props {
 export default function Welcome({title}: Props) {
   return (
     <View>
-      <Text>{title}</Text>
+      <Text >{title}</Text>
     </View>
   )
 }
