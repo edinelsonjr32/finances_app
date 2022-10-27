@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useCallback } from "react";
 import Dashboard from "./src/screens/Dashboard";
+import Register from "./src/screens/Register";
 import { ThemeProvider } from "styled-components/native";
 import theme from "./src/global/styles/theme";
+import * as SplashScreen from "expo-splash-screen";
 
-import AppLoading from "expo-app-loading";
 //para instalar a nossa font personalizada:
+
+import { StatusBar } from "expo-status-bar";
 /**
  * 
  * expo install expo-font @expo-google-fonts/poppins
@@ -31,14 +34,20 @@ export default function App() {
    * Precisamos instalar a dependencia que trabalha com o carregamento:
    * expo install expo-app-loading
    */
-  if(!fontLoaded){
-    return <AppLoading />
-  }
+   const onLayoutRootView = useCallback(async () => {
+    if (fontLoaded) {
+      // This tells the splash screen to hide immediately
+      await SplashScreen.hideAsync();
+    }
+  }, [fontLoaded]);
+
+  if (!fontLoaded) return null;
 
   return (
     
     <ThemeProvider theme={theme}>
-      <Dashboard />
+        <StatusBar style="light" translucent backgroundColor="transparent" />
+        <Register/>
     </ThemeProvider>
   );
 }

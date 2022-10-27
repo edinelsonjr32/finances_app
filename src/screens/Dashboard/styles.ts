@@ -4,12 +4,14 @@ import styled from "styled-components/native";
 import { RFValue } from "react-native-responsive-fontsize";
 import { RFPercentage } from "react-native-responsive-fontsize";
 import theme from "../../global/styles/theme";
-import {getStatusBarHeight} from 'react-native-iphone-x-helper';
+import {getBottomSpace, getStatusBarHeight} from 'react-native-iphone-x-helper';
+import {DataListProps} from '.';
+
+import { FlatList } from "react-native";
 //corrigir problema do iphone X, entalhe
 
 /**
  * npm i react-native-iphone-x-helper --save
-
  */
 
 //trabalhando com icones
@@ -26,7 +28,6 @@ export const Header = styled.View`
     justify-content: center;
     align-items: flex-start;
     flex-direction: row;
-    border-radius: 30px;
 `;
 
 //padding: cima-baixo direita-esquerda
@@ -37,7 +38,6 @@ export const UserWrapper = styled.View`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-
 `;
 export const UserInfo = styled.View`
     flex-direction: row;
@@ -88,4 +88,15 @@ export const Title = styled.Text`
     font-size: ${RFValue(18)}px;
     font-family: ${({theme})=> theme.fonts.regular};
     margin-bottom: 16px;
+`;
+
+export const TransactionsList = styled(
+        FlatList as new () => FlatList<DataListProps>
+    ).attrs({
+    showsVerticalScrollIndicator: false,
+    contentContainerStyle : {
+    getPaddingBottom: getBottomSpace()
+    }
+})`
+    
 `;
