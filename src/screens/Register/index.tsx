@@ -13,7 +13,7 @@ export default function Register() {
   const [category, setCategory] = useState(
     {
       key: 'category',
-      name: 'Categoria'
+      name: 'Elementos'
     }
   );
   const [categoryModalOpen, setCategoryModalOpen] = useState(false);
@@ -52,7 +52,7 @@ export default function Register() {
             />
           </TransactionsTypes>
           <CategorySelectButton
-            title="Categoria"
+            title={category.name}
             onPress={handleOpenSelectCategory}
           />
           
